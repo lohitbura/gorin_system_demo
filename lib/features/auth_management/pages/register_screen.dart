@@ -1,8 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gs_demo/common/widgets/image_picker_bottom_sheet.dart';
+import 'package:gs_demo/common/widgets/loading_alert.dart';
+import 'package:gs_demo/features/auth_management/provider/auth_providers.dart';
 import 'package:gs_demo/resources/colors.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -22,7 +26,7 @@ class _RegisterScreen extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    final auth = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -142,8 +146,10 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
             SizedBox(height: 20,),
             ElevatedButton(
-
               onPressed: () async {
+                showLoadingDialog(context, message: "Logging in...");
+                String imageUrl = '';
+                await auth.registerUser(nameCtrl.text.trim(), emailCtrl.text.trim(), passwordCtrl.text.trim(), imageUrl);
               },
               child: Text("Sign Up"),
             ),
@@ -155,6 +161,9 @@ class _RegisterScreen extends State<RegisterScreen> {
             ),
             SizedBox(height: 5,),
             InkWell(
+              onTap: (){
+                context.go('/login');
+              },
               child: Text('Login',style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600

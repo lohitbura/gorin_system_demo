@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -94,6 +95,9 @@ class _LoginScreen extends State<LoginScreen> {
             ),
             SizedBox(height: 5,),
             InkWell(
+              onTap: (){
+                context.go('/register');
+              },
               child: Text('Sign Up',style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600
