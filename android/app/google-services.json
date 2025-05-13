@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1099488156156",
-    "project_id": "gs-demo-bf3e0",
-    "storage_bucket": "gs-demo-bf3e0.firebasestorage.app"
+    "project_number": "1069800969245",
+    "project_id": "gs-demo2",
+    "storage_bucket": "gs-demo2.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1099488156156:android:dd1aef9c8743bd7f20ba79",
+        "mobilesdk_app_id": "1:1069800969245:android:a4afece79150f792d022f4",
         "android_client_info": {
           "package_name": "com.lohitbura.gs_demo"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBN5_zZuvqfg-9UFhrE8E4rrTDk2O2mTwk"
+          "current_key": "AIzaSyD5SwBouoyaogipaKhgj-n5SoGEiK7mDds"
         }
       ],
       "services": {

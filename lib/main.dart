@@ -3,24 +3,16 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gs_demo/core/firebase/firebase_options.dart';
-import 'package:gs_demo/features/auth_management/pages/login_screen.dart';
-import 'package:gs_demo/features/auth_management/pages/register_screen.dart';
 import 'package:gs_demo/resources/colors.dart';
 import 'package:provider/provider.dart';
-
 import 'core/router/app_router.dart';
 import 'features/auth_management/provider/auth_providers.dart';
+import 'features/home/provider/home_provider.dart';
 
 void main() async{
   await runZonedGuarded(() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  // if (Firebase.apps.isNotEmpty) {
-  //   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // }else{
-  //   Firebase.initializeApp();
-  // }
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp();
   }
@@ -40,10 +32,18 @@ class MyApp extends StatelessWidget {
    return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => UsersProvider()),
       ],
       child: MaterialApp.router(
         title: 'GS Demo',
         theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            titleTextStyle: TextStyle(
+              color: AppColor.color12267B,
+              fontWeight: FontWeight.w600,
+              fontSize: 20
+            )
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(AppColor.colorCFD3E4),
