@@ -13,8 +13,6 @@ class AuthProvider with ChangeNotifier {
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
-
-  /// Upload image to Firebase Storage and return URL
   Future<String> _uploadProfileImage(String imageFile, String uid) async {
     try {
       if(imageFile.isEmpty){
@@ -77,6 +75,23 @@ class AuthProvider with ChangeNotifier {
       throw Exception(message);
     } catch (e) {
       throw Exception(e.toString());
+    }
+  }
+
+
+  Future<void> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      String message = 'Password reset failed.';
+      if (e.code == 'user-not-found') {
+        message = 'No user found with this email.';
+      } else if (e.code == 'invalid-email') {
+        message = 'Invalid email address.';
+      }
+      throw Exception(message);
+    } catch (_) {
+      throw Exception("An unexpected error occurred.");
     }
   }
 
