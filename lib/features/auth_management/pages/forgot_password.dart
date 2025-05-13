@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gs_demo/common/widgets/input_field_wrapper.dart';
 import 'package:gs_demo/features/auth_management/provider/auth_providers.dart';
 import 'package:gs_demo/resources/colors.dart';
 import 'package:provider/provider.dart';
@@ -43,13 +44,7 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-        Card(
-        elevation: 4, // Set the elevation here
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            6,
-          ),
-        ),
+          InputFieldWrapper(
             child: TextField(
               controller: _emailController,
               decoration: InputDecoration(labelText: "Enter your email"),

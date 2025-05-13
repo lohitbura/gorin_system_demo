@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gs_demo/common/widgets/input_field_wrapper.dart';
 import 'package:gs_demo/common/widgets/loading_alert.dart';
 import 'package:gs_demo/core/functions/form_validator.dart';
 import 'package:gs_demo/features/auth_management/pages/forgot_password.dart';
@@ -38,13 +39,7 @@ class _LoginScreen extends State<LoginScreen> {
                 style: TextStyle( fontSize: 18),
               ),
               SizedBox(height: 10),
-              Card(
-                elevation: 4, // Set the elevation here
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    6,
-                  ),
-                ),
+              InputFieldWrapper(
                 child: TextFormField(
                   controller: emailCtrl,
                   keyboardType: TextInputType.emailAddress,
@@ -60,13 +55,7 @@ class _LoginScreen extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              Card(
-                elevation: 4, // Set the elevation here
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    6,
-                  ), // Optional: Rounded corners
-                ),
+              InputFieldWrapper(
                 child: TextFormField(
                   obscureText: _isObscured,
                   controller: passwordCtrl,
