@@ -2,12 +2,15 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:gs_demo/features/auth_management/provider/auth_providers.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(title: Text("Users")),
       body:  Container(
@@ -36,9 +39,7 @@ class HomeScreen extends StatelessWidget {
             ),
       ),
       bottomNavigationBar: ElevatedButton(
-        onPressed: (){
-
-        },
+        onPressed: () => auth.logout(),
         child: Text("Logout"),
       ),
     );

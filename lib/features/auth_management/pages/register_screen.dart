@@ -138,18 +138,20 @@ class _RegisterScreen extends State<RegisterScreen> {
               ),
             ),
             SizedBox(height: 20,),
-            InkWell(
-              child: Text('Forgot Password ?',style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600
-              ),),
-            ),
-            SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () async {
                 showLoadingDialog(context, message: "Logging in...");
-                String imageUrl = '';
-                await auth.registerUser(nameCtrl.text.trim(), emailCtrl.text.trim(), passwordCtrl.text.trim(), imageUrl);
+                try {
+                  await auth.registerUser(
+                      nameCtrl.text.trim(), emailCtrl.text.trim(),
+                      passwordCtrl.text.trim(), _image.value);
+                }
+                catch (e) {
+                  hideLoadingDialog(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("${e.toString()}")),
+                  );
+                }
               },
               child: Text("Sign Up"),
             ),

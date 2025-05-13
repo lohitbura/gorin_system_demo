@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gs_demo/common/widgets/loading_alert.dart';
+import 'package:gs_demo/features/auth_management/provider/auth_providers.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,7 +21,7 @@ class _LoginScreen extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+    final auth = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -82,8 +85,18 @@ class _LoginScreen extends State<LoginScreen> {
             ),
             SizedBox(height: 20,),
             ElevatedButton(
-
               onPressed: () async {
+                showLoadingDialog(context);
+                try {
+                  await auth.loginUser(
+                      emailCtrl.text.trim(), passwordCtrl.text.trim());
+                }
+                catch (e) {
+                  hideLoadingDialog(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("${e.toString()}")),
+                  );
+                }
               },
               child: Text("Login"),
             ),
