@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gs_demo/features/auth_management/pages/login_screen.dart';
+import 'package:gs_demo/features/auth_management/pages/register_screen.dart';
 import 'package:gs_demo/resources/colors.dart';
 
 void main() {
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
           onSurface: AppColor.color12267B,
         ),
       ),
-      home:  LoginScreen(),
+      home:  RegisterScreen(),
     );
   }
 }

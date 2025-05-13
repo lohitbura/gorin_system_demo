@@ -39,6 +39,7 @@ class _LoginScreen extends State<LoginScreen> {
               ),
               child: TextField(
                 controller: emailCtrl,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: "Email",
                 ),
